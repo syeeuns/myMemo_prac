@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax 연습</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<script>
+    function q1(){
+        let num = $('#magicnum').val();
+
+        if(num===""){
+            alert('숫자를 입력하세요');
+            return;
+        }
+        $.ajax({
+            type: 'GET',
+            url: `http://numbersapi.com/${num}`,
+            data: {},
+            success: function (response){
+                $('#meaning').empty();
+                let temp_html = `<p>${response}</p>`;
+                $('#meaning').append(temp_html);
+            }
+        })
+    }
+</script>
+<body>
+<h1>JQuery + Ajax 연습</h1>
+<hr>
+<div class="container">
+    <h2>4. 랜덤 숫자 의미부여 API 이용하기</h2>
+<p>모든 숫자는 어떤 의미가 있습니다.</p>
+<p>업데이트 버튼을 누를 때마다 지웠다 새로 씌여져야 합니다.</p>
+    <input type="number" id="magicnum">
+    <button onclick="q1()">이 숫자의 의미는?</button>
+    <h5 id="meaning"></h5>
+</div>
+</body>
+</html>
